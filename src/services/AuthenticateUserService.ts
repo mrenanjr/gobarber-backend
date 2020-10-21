@@ -1,8 +1,9 @@
-import User from '../models/User';
+import User from '@models/User';
 import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import authConfig from '../config/auth';
+import authConfig from '@config/auth';
+import AppError from '@errors/AppError';
 
 interface Request {
   email: string;
@@ -23,13 +24,13 @@ class AuthenticateUserService {
     });
 
     if(!user) {
-      throw new Error('User not found!');
+      throw new AppError('User not found.', 404);
     }
 
     const passwordMatched = await compare(password, user.password);
 
     if(passwordMatched) {
-      throw new Error('Incorret password!');
+      throw new AppError('Incorret password.', 401);
     }
 
     const { secret, expiresIn } = authConfig.jwt;
