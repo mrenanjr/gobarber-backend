@@ -1,9 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 
-import path from 'path';
-import fs from 'fs';
-
-import uploadConfig from '@config/upload';
 import User from '@modules/users/infra/typeorm/entities/User';
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
