@@ -5,14 +5,14 @@ import IParseMailTemplateDTO from '../dtos/IParseMailTemplateDTO';
 import IMailTemplateProvider from '../models/IMailTemplateProvider';
 
 class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
-  public async parse({ file, variables }: IParseMailTemplateDTO): Promise<string> {
-    const templateFileContent = fs.promises.readFile(file, {
-      encoding: 'utf-8'
-    });
-    const parseTemplate = handlebars.compile(templateFileContent);
+    public async parse({ file, variables }: IParseMailTemplateDTO): Promise<string> {
+        const templateFileContent = fs.promises.readFile(file, {
+            encoding: 'utf-8',
+        });
+        const parseTemplate = handlebars.compile(templateFileContent);
 
-    return parseTemplate(variables);
-  }
+        return parseTemplate(variables);
+    }
 }
 
-export default HandlebarsMailTemplateProvider
+export default HandlebarsMailTemplateProvider;
